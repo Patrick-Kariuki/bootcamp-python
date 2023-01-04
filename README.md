@@ -7,6 +7,6 @@ programming language with an opportunity to apply these skills in another progra
 demonstrate proficiency in the new language.
 
 ## Projects:
-1.
+1. Decrypting encrypted message
 2.
 3.
