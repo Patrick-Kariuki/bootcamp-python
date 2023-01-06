@@ -1,4 +1,4 @@
-# bootcamp-python
+# Bootcamp-python
 
 This repo contains code for projects in JHU's Bootcamp Python Intersession 2023 course.
 
@@ -7,6 +7,6 @@ programming language with an opportunity to apply these skills in another progra
 demonstrate proficiency in the new language.
 
 ## Projects:
-1. Decrypting encrypted message
-2.
-3.
+> - Project 1: Decrypting encrypted message
+> - Project 2:
+> - Project 3:
