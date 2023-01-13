@@ -9,7 +9,8 @@ Bootcamp Python
 Johns Hopkins University
 Intersession 2023
 
-Project 1A: Decrypting encrypted message using reverse alphabet.
+Project 1
+Problem A: Decrypting encrypted message using reverse alphabet.
 """
 # Normal list of the alphabet
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
