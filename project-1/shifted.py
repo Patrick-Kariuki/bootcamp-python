@@ -43,8 +43,6 @@ for shifted_by in range(1, 26):
 
 
 # Read the frequencies of the letters in sample, and store them in dictionary
-# I had a rough time doing this with lists but after learning dictionaries, I
-# decided to give it a go.
 count = {}
 with open("pride_prejudice.txt", "r") as file:
     contents = file.read()
