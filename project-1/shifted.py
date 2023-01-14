@@ -15,8 +15,6 @@ Problem B: Decrypting encrypted message using shifted approach.
 alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
            'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
-#alphabet ="abcdefghijklmnopqrstuvwxyz"
-
 # Collect the encrypted message from the user
 encrypted_message = input("Enter the encrypted message: ")
 
