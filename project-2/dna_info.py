@@ -19,7 +19,6 @@ def encode_sequence(input_string):
     Parameters:
     ----------
     input_string : String to be encoded to a DNA sequence
-        
 
     Returns:
     -------
@@ -49,21 +48,19 @@ def encode_sequence(input_string):
 
 def decode_sequence(dna_input):
     """
-    Function: de
+    Function: decode_sequence: Decodes a string of encoded information in DNA
+        bases to a string in English text
 
-    Parameters
+    Parameters:
     ----------
-    dna_input : TYPE
-        DESCRIPTION.
-
-    Returns
+    dna_input : DNA string to be decoded to English text
+        
+    Returns: 
     -------
-    decoded_string : TYPE
-        DESCRIPTION.
-
+    decoded_string : English text string decoded from dna_input
+        
     """
-    
-    
+
     # Dictionary to hold the DNA base - binary pair scheme
     #dna_decoding = {"A": "00", "T": "01", "C": "10", "G": "11"}
     # Initialize empty string to store decoded string to be returned
