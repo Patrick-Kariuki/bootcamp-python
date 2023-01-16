@@ -48,7 +48,56 @@ def encode_sequence(input_string):
     return dna_sequence
 
 def decode_sequence(dna_input):
-    return
+    """
+    Function: de
+
+    Parameters
+    ----------
+    dna_input : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    decoded_string : TYPE
+        DESCRIPTION.
+
+    """
+    
+    
+    # Dictionary to hold the DNA base - binary pair scheme
+    #dna_decoding = {"A": "00", "T": "01", "C": "10", "G": "11"}
+    # Initialize empty string to store decoded string to be returned
+    decoded_string = ""
+    
+    # Iterate though each base in the dna input in steps of 4
+    # Because each Englist text character was converted to 8 bit to yield
+    # 4 DNA bases for its encoded message
+    for i in range(0, len(dna_input), 4):
+        # DNA bases representing a character in English text
+        char_dna_bases = dna_input[i: i + 4]
+        
+        # Iterate through each base in the character DNA bases
+        for base in char_dna_bases:
+            # Empty string to hold the binary form of the bases
+            binary_form = ""
+            # Map the base to binary and add to binary_form string
+            if base == "A":
+                binary_form += "00"
+            elif base == "T":
+                binary_form += "01"
+            elif base == "C":
+                binary_form += "10"
+            else:
+                binary_form += "11"
+        print(binary_form)
+        
+        # Convert the base to binary pair form and then to ascii value
+        ascii_value = int(binary_form, 2)
+        # Convert ascii value to English text and add to decoded string
+        decoded_string += chr(ascii_value)
+        
+    # Return decoded sequence
+    return decoded_string
 
 
 if __name__ == "__main__":
