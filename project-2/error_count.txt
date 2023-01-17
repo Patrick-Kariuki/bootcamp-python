@@ -1,7 +1,7 @@
 ﻿Name: Patrick Kariuki 
 JHED: pkariuk1 
-n = 1, errors = 2 
-n = 2, errors = 5 
+n = 1, errors = 1 
+n = 2, errors = 3 
 n = 5, errors = 0 
 n = 10, errors = 0 
 n = 20, errors = 0 

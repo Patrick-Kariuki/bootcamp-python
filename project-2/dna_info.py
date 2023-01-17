@@ -267,3 +267,20 @@ if __name__ == "__main__":
     print(synthesizer("TAATCGGATCAGTACGGATCAGTACGGATCAGTACGGATCAGTACGGATCAG"))
     print(error_count("Patrick", "Kariuki"))
     print(redundancy(5, "AATCGGATCAGTACGGATCAGTAC"))
+
+    #Sample input string of length 50
+    sample_string = "TAATCGGATCAGTACGGATCAGTACGGATCAGTACGGATCAGTACGGATCAG"
+
+    # Write name and jhed to file
+    # I tried creating a pdf file using the file.write() method but
+    # the file could not open. I decided to use a txt file and convert
+    # to pdf using Microsoft Word.
+    with open("error_count.txt", "w", encoding="utf-8-sig") as file:
+        file.writelines(["Name: Patrick Kariuki \n", "JHED: pkariuk1 \n"])
+
+    # Test the redundancy scheme for different values of n
+    for n in [1, 2, 5, 10, 20, 50, 75, 80, 90, 100]:
+        corrected_string = redundancy(n, sample_string)
+        errors = error_count(sample_string, corrected_string)
+        with open("error_count.txt", "a") as file:
+            file.write(f"n = {n}, errors = {errors} \n")
