@@ -144,6 +144,7 @@ def synthesizer(dna_sequence):
         # Generate a random float between 0 and 1 for the synthesis
         # output possiblity
         output_possibility = random.random()
+        
         # Check which base will be added based on the current base
         # and output possibility
         if dna_base == "A":
@@ -214,10 +215,52 @@ def error_count(input_string1, input_string2):
 
 
 def redundancy(n, input_string):
-    return
+    """
+    Function: redundancy: Obtains n copies of the synthesized DNA from
+        synthesizer function, compares all n copies, to find the correct
+            letter in each position
+
+    Parameters
+    ----------
+    n : Integer, number of times to repeat synthesis on input
+    input_string : TString to synthesize
+
+    Returns
+    -------
+    error_corrected : TError corrected string with the most frequent base
+        at every index in the synthesized dna sequences
+
+    """
+    # Initialize an empty list to store values returned from
+    # the synthesizer function
+    synthesized_dna_list = []
+    
+    # Use synthesizer function to obtain n copies of dna
+    for i in range(n):
+        synthesized_dna = synthesizer(input_string)
+        synthesized_dna_list.append(synthesized_dna)
+    
+    # Initialize an empyt string to store the error-corrected sequence
+    error_corrected = ""
+    # Iterate through each dna base in the input string
+    for i in range(len(input_string)):
+        # Initialize a dictionary to store current dna base counts
+        base_counts = {'A': 0, 'T': 0, 'C': 0, 'G': 0}
+        # Iterate through each synthesized dna sequence
+        for synthesized_dna in synthesized_dna_list:
+            # Increment the count for the base at the current position
+            base_counts[synthesized_dna[i]] += 1
+        # Find the base that occurred most frequently
+        most_frequent = max(base_counts, key=base_counts.get)
+        error_corrected += most_frequent
+    
+    return error_corrected
 
 if __name__ == "__main__":
     print(encode_sequence("Frieza"))
     print(decode_sequence("TATCTGACTCCTTCTTTGCCTCAT"))
     print(encrypt_decrypt("TAAT"))
+    print(encrypt_decrypt("CGGC"))
+    print(synthesizer("TAATCGGATCAGTACGGATCAGTACGGATCAGTACGGATCAGTACGGATCAG"))
     print(error_count("Patrick", "Kariuki"))
+    print(redundancy(5, "AATCGGATCAGTACGGATCAGTAC"))
