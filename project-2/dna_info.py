@@ -123,17 +123,16 @@ def encrypt_decrypt(input_string, key = "CAT"):
 
 def synthesizer(dna_sequence):
     """
-    Function: synthesizer: 
+    Function: synthesizer: simulates DAN manufacturing process by a robot
 
     Parameters
     ----------
-    dna_sequence : TYPE
-        DESCRIPTION.
+    dna_sequence : DNA sequence string to be turned to DNA synthesized by
+        a robot
 
     Returns
     -------
-    synthesized_dna : TYPE
-        DESCRIPTION.
+    synthesized_dna : String of DNA synthesized by a robot
 
     """
     # Initialize empty string to store generated sequence
