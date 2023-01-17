@@ -11,6 +11,14 @@ Intersession 2023
 
 Project 2
 """
+# Global variables
+# Dictionary to hold the binary pair - DNA base scheme
+dna_encoding = {"00": "A", "01": "T", "10": "C", "11": "G"}
+
+# Dictionary to hold DNA base - binary pair scheme
+dna_decoding = {"A": "00", "T": "01", "C": "10", "G": "11"}
+
+
 def encode_sequence(input_string):
     """
     Function: encode_sequence: Converts a string to an encoded DNA sequence
@@ -25,8 +33,7 @@ def encode_sequence(input_string):
     dna_sequence : String containing encoded DNA sequence from the input
 
     """
-    # Dictionary to hold the binary pair - DNA base scheme
-    dna_encoding = {"00": "A", "01": "T", "10": "C", "11": "G"}
+    
     # Initialize empty string to store encrypted message
     # This string will be returned by the function
     dna_sequence = ""
@@ -61,8 +68,7 @@ def decode_sequence(dna_input):
     decoded_string : English text string decoded from dna_input
         
     """
-    # Dictionary to hold DNA base - binary pair scheme
-    dna_decoding = {"A": "00", "T": "01", "C": "10", "G": "11"}
+    
     # Initialize empty string to store decoded English text message
     # This string will be returned by the function
     decoded_string = ""
@@ -85,8 +91,48 @@ def decode_sequence(dna_input):
     return decoded_string
 
 
-def encrypt_decrypt(input_string, key = "CAT"):
+def encrypt_decrypt(string, key = "CAT"):
+    """
+
+    Parameters:
+    ----------
+    string : TYPE
+        DESCRIPTION.
+    key : TYPE, optional
+        DESCRIPTION. The default is "CAT".
+
+    Returns:
+    -------
+    encrypted_string : TYPE
+        DESCRIPTION.
+
+    """
+    # Initialize empty string
+    encrypted_string = ""
+    key_index = 0
+    # Iterate through the input string
+    for i in range(len(string)):
+        # Get the current letter and key letter
+        letter = string[i]
+        key_letter = key[key_index]
+        # XOR the current letter with the key letter
+        xor = chr(ord(letter) ^ ord(key_letter))
+        # Append the resulting letter to the output string
+        encrypted_string += xor
+        key_index += 1
+        # If key_index reaches the end of the key, start again from the beginning
+        if key_index == len(key):
+            key_index = 0
+    return encrypted_string
+
+
+def synthesizer(dna_sequence):
     return
+
+
+def error_count(input_string1, input_string2):
+    count = 0
+    return count
 
 
 if __name__ == "__main__":
