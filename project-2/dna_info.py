@@ -131,11 +131,35 @@ def synthesizer(dna_sequence):
 
 
 def error_count(input_string1, input_string2):
-    count = 0
-    return count
+    """
+    Function: error_count: counts the number of mismatches in 2 strings
+
+    Parameters: 
+    ----------
+    input_string1 : First string to be compared
+    input_string2 : Second string to be compared
+
+    Returns
+    -------
+    num_mismatches : Integer that gives the number of mismatches found
+
+    """
+    
+    # Initialize variable to hold number of mismatches
+    num_mismatches = 0
+    # Iterate through the first string
+    # Compare current letter with letter in same index in second string
+    # If they do not match, add 1 to num_mismatches
+    for index, letter in enumerate(input_string1):
+        if letter != input_string2[index]:
+            num_mismatches += 1
+    
+    # Return the number of mismatches found
+    return num_mismatches
 
 
 if __name__ == "__main__":
     print(encode_sequence("Frieza"))
     print(decode_sequence("TATCTGACTCCTTCTTTGCCTCAT"))
     #print(encrypt_decrypt("TAAT"))
+    print(error_count("Patrick", "Kariuki"))
