@@ -96,18 +96,20 @@ def decode_sequence(dna_input):
 
 def encrypt_decrypt(input_string, key = "CAT"):
     """
-
+    Function: encrypt_decrypt: Encrypt the input DNA sequence with the key
+        using the XOR operation
+    
     Parameters:
     ----------
-    string : TYPE
-        DESCRIPTION.
-    key : TYPE, optional
-        DESCRIPTION. The default is "CAT".
+    input_string : String to be encoded
+        
+    Optional Parameters:
+    key : String to encrypt DNA sequence using XOR operation
+         The default is "CAT"
 
     Returns:
     -------
-    encrypted_string : TYPE
-        DESCRIPTION.
+    encrypted_string : String representing the encrypted sequence
 
     """
     encrypted = input_string
@@ -255,7 +257,9 @@ def redundancy(n, input_string):
     
     return error_corrected
 
+
 if __name__ == "__main__":
+    # For testing
     print(encode_sequence("Frieza"))
     print(decode_sequence("TATCTGACTCCTTCTTTGCCTCAT"))
     print(encrypt_decrypt("TAAT"))
