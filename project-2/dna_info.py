@@ -11,6 +11,9 @@ Intersession 2023
 
 Project 2
 """
+# Import Random module
+import random
+
 # Global variables
 # Dictionary to hold the binary pair - DNA base scheme
 dna_encoding = {"00": "A", "01": "T", "10": "C", "11": "G"}
@@ -91,7 +94,7 @@ def decode_sequence(dna_input):
     return decoded_string
 
 
-def encrypt_decrypt(string, key = "CAT"):
+def encrypt_decrypt(input_string, key = "CAT"):
     """
 
     Parameters:
@@ -107,27 +110,79 @@ def encrypt_decrypt(string, key = "CAT"):
         DESCRIPTION.
 
     """
-    # Initialize empty string
-    encrypted_string = ""
-    key_index = 0
-    # Iterate through the input string
-    for i in range(len(string)):
-        # Get the current letter and key letter
-        letter = string[i]
-        key_letter = key[key_index]
-        # XOR the current letter with the key letter
-        xor = chr(ord(letter) ^ ord(key_letter))
-        # Append the resulting letter to the output string
-        encrypted_string += xor
-        key_index += 1
-        # If key_index reaches the end of the key, start again from the beginning
-        if key_index == len(key):
-            key_index = 0
-    return encrypted_string
+    encrypted = input_string
+    for i in range(len(key)):
+        k = key[i]
+        new_encrypted = ""
+        for j in range(len(encrypted)):
+            new_encrypted += chr(ord(encrypted[j]) ^ ord(k))
+        encrypted = new_encrypted
+    return encrypted
+
 
 
 def synthesizer(dna_sequence):
-    return
+    """
+    Function: synthesizer: 
+
+    Parameters
+    ----------
+    dna_sequence : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    synthesized_dna : TYPE
+        DESCRIPTION.
+
+    """
+    # Initialize empty string to store generated sequence
+    synthesized_dna = ""
+    
+    # Iterate through the bases in the input dna_sequence
+    for dna_base in dna_sequence:
+        # Generate a random float between 0 and 1 for the synthesis
+        # output possiblity
+        output_possibility = random.random()
+        # Check which base will be added based on the current base
+        # and output possibility
+        if dna_base == "A":
+            # Base A produced 100% of the time
+            synthesized_dna += "A"
+        # For the rest, we will have to also account for output possibility
+        # I arranged output possibility in decreasing order
+        elif dna_base == "T":
+            if output_possibility <= 0.90:
+                synthesized_dna += "T"
+            elif output_possibility <= 0.95:
+                synthesized_dna += "A"
+            elif output_possibility <= 0.98:
+                synthesized_dna += "C"
+            else:
+                synthesized_dna += "G"
+        
+        elif dna_base == "C":
+            if output_possibility <= 0.97:
+                synthesized_dna += "C"
+            elif output_possibility <= 0.98:
+                synthesized_dna += "A"
+            elif output_possibility <= 0.99:
+                synthesized_dna += "T"
+            else:
+                synthesized_dna += "G"
+        
+        else:
+                if output_possibility <= 0.95:
+                    synthesized_dna += "G"
+                elif output_possibility <= 0.97:
+                    synthesized_dna += "C"
+                elif output_possibility <= 0.99:
+                    synthesized_dna += "T"
+                else:
+                    synthesized_dna += "A"
+    
+    # Return the Robot synthesized dna
+    return synthesized_dna
 
 
 def error_count(input_string1, input_string2):
@@ -158,8 +213,11 @@ def error_count(input_string1, input_string2):
     return num_mismatches
 
 
+def redundancy(n, input_string):
+    return
+
 if __name__ == "__main__":
     print(encode_sequence("Frieza"))
     print(decode_sequence("TATCTGACTCCTTCTTTGCCTCAT"))
-    #print(encrypt_decrypt("TAAT"))
+    print(encrypt_decrypt("TAAT"))
     print(error_count("Patrick", "Kariuki"))
