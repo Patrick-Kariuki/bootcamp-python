@@ -112,15 +112,47 @@ def encrypt_decrypt(input_string, key = "CAT"):
     encrypted_string : String representing the encrypted sequence
 
     """
+    
+    # Initialize the encrypted message to return with the input string
     encrypted = input_string
+    # Iterate through the bases in the key
     for i in range(len(key)):
-        k = key[i]
+        # Get the current base in the key
+        current_key_base = key[i]
+        # Initialize an empty string to hold the resulting encrypted message
+        # after each iteration
         new_encrypted = ""
+        # Iterate through each base in the input string and XOR it with
+        # the current key base
         for j in range(len(encrypted)):
-            new_encrypted += chr(ord(encrypted[j]) ^ ord(k))
+            # Since we can only XOR the binary pairs in dna decoding scheme,
+            # we need to retrieve them and store the result in a retrieval
+            # value. This value will then get the corresponding base from the
+            # dna encoding scheme
+            
+            # Get the current base in encrypted
+            current = encrypted[j]
+            retriever = str(int(dna_decoding[current_key_base]) \
+                            ^ int(dna_decoding[current]))
+            
+            # we need to replace the retriever value if it's 0 or 1 since 
+            # the dna encoding scheme used "00" and "01"
+            if retriever == "0":
+                retriever = "00"
+                # Get the corresponding value and add to new encrypted
+                new_encrypted += dna_encoding[retriever]
+            elif retriever == "1":
+                retriever = "01"
+                # Get the corresponding value and add to new encrypted
+                new_encrypted += dna_encoding[retriever]
+            # The rest match the scheme
+            else:
+                new_encrypted += dna_encoding[retriever]
+        # The encryped message is passed for the next iteration
         encrypted = new_encrypted
+        
+    # Return the encrypted message
     return encrypted
-
 
 
 def synthesizer(dna_sequence):
@@ -283,4 +315,4 @@ if __name__ == "__main__":
         corrected_string = redundancy(n, sample_string)
         errors = error_count(sample_string, corrected_string)
         with open("error_count.txt", "a") as file:
-            file.write(" n = {}, errors = {} \n".format(n, errors))
+            file.write("n = {}, errors = {} \n".format(n, errors))
