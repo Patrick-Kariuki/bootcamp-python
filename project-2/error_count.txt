@@ -1,12 +1,12 @@
 ﻿Name: Patrick Kariuki 
 JHED: pkariuk1 
-n = 1, errors = 1 
-n = 2, errors = 3 
-n = 5, errors = 0 
-n = 10, errors = 0 
-n = 20, errors = 0 
-n = 50, errors = 0 
-n = 75, errors = 0 
-n = 80, errors = 0 
-n = 90, errors = 0 
-n = 100, errors = 0 
+ n = 1, errors = 6 
+ n = 2, errors = 2 
+ n = 5, errors = 0 
+ n = 10, errors = 0 
+ n = 20, errors = 0 
+ n = 50, errors = 0 
+ n = 75, errors = 0 
+ n = 80, errors = 0 
+ n = 90, errors = 0 
+ n = 100, errors = 0 

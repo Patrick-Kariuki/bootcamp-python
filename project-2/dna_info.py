@@ -283,4 +283,4 @@ if __name__ == "__main__":
         corrected_string = redundancy(n, sample_string)
         errors = error_count(sample_string, corrected_string)
         with open("error_count.txt", "a") as file:
-            file.write(f"n = {n}, errors = {errors} \n")
+            file.write(" n = {}, errors = {} \n".format(n, errors))
