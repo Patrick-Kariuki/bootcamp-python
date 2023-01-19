@@ -11,4 +11,7 @@ Intersession 2023
 
 Project 4
 """
+# Import pandas module
+import pandas as pd
+
 
