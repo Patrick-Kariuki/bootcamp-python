@@ -11,5 +11,12 @@ Intersession 2023
 
 Project 3
 """
-import random
 import frac
+
+class Buyer:
+    
+    """ Buyer class corresponding to each buyer at the mall"""
+    def __init__(self, current_node_id, remaining_budget):
+        self.ID = str(current_node_id)
+        self.remaining_budget = frac(remaining_budget)
+        
