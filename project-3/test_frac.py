@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jan 18 20:23:17 2023
+@author: Patrick Kariuki
+@JHED: pkariuk1
+Date: 01/11/2023
 
-@author: patrickkariuki
+Bootcamp Python
+Johns Hopkins University
+Intersession 2023
+
+Project 3
 """
 import frac
 
