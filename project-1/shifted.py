@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 @author: Patrick Kariuki
+@ JHED: pkariuk1
 Date: 01/03/2023
 
 Bootcamp Python
@@ -26,14 +27,20 @@ possibilities = []
 for shifted_by in range(1, 26):
     # String representing the decrypted message
     decrypted = ""
+    
+    # Iterate through each letter in encrypted message
     for letter in encrypted_message:
         if letter in alphabet:
+            # Get new index of letter by adding the shifted_by value
             new_index = alphabet.index(letter) + shifted_by
-            if new_index >= 25:
+            # If index value is greater than the length of alphabet
+            if new_index >= len(alphabet):
                 new_index -= 26
+                # Get the corresponding letter and add to decrypted
                 decrypted += alphabet[new_index]
             else:
                 decrypted += alphabet[new_index]
+        # Cater for whitespace and punctuations
         else:
             decrypted += letter
     # Append individual decrypted messages in possibilities
@@ -41,22 +48,24 @@ for shifted_by in range(1, 26):
 
 
 # Read the frequencies of the letters in sample, and store them in dictionary
-count = {}
+letter_count = {}
 with open("pride_prejudice.txt", "r") as file:
     contents = file.read()
     # Count the number of occurrences of every letter in the alphabet
     for letter in contents.lower():
         if letter.isalpha(): 
-            if letter in count:
-                count[letter] += 1
+            if letter in letter_count:
+                letter_count[letter] += 1
             else:
-                count[letter] = 1
+                letter_count[letter] = 1
 
 # Total number of characters in sample
-total_chars = sum(count.values())
+total_chars = sum(letter_count.values())
 
 # Calculate the Chi score for each decrypted possibility
 chi_scores = []
+
+# Iterate through each possibility
 for possibility in possibilities:
     # Chi score for each character in each possibility
     score = 0
@@ -67,7 +76,8 @@ for possibility in possibilities:
             char_count = possibility.count(character)
             # Variable holding likelihood values multiplied by
             # length of the decrypted message
-            var_holder = count[character] / total_chars * len(possibility)
+            var_holder = letter_count[character] / total_chars * \
+                len(possibility)
             # Calculate chi score for character
             score += (char_count - var_holder) ** 2 / var_holder 
     # Append individual scores to chi_scores
