@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 # import math module
 import math
 
+
 def calculate_ratings(past_matches):
     """
     Function: calculate_ratings: Estimates each player's skill level based
@@ -72,9 +73,9 @@ def calculate_ratings(past_matches):
         print("File", past_matches, "cannot be found")
 
 
-def show_ratings(ratings_dict):
+def display_ratings(ratings_dict):
     """
-    Function: show_ratings: Generates to the console and saves to a file 
+    Function: display_ratings: Generates to the console and saves to a file 
         named projections.pdf a bar graph displaying each player's ratings
 
     Parameters
@@ -116,8 +117,38 @@ def show_ratings(ratings_dict):
     plt.savefig('projections.pdf')
     # Display the plot
     plt.show()
+
+
+def display_probs(probs_dict):
+    # Initialize empty dictionary to be turned to CSV
+    my_dict = {}
+    
+    # Sort the values in dict and reverse them to get highest to lowest
+    sorted_prob_values = sorted(probs_dict.values())
+    # Initialize an empty list to hold sorted values of players
+    # from the one with highest prob value to one with lowest
+    sorted_prob_players = []
+    
+    # Iterate through probs_dict to get the players sorted in order
+    # of decreasing prob values
+    for prob_value in sorted_prob_values:
+        for key, value in probs_dict.items():
+            if prob_value == value:
+                sorted_prob_players.append(key)
+    
+    # Add sorted players and values to dictionary as series
+    my_dict['Player'] = sorted_prob_players
+    my_dict['Probability'] = sorted_prob_values
+    
+    # Convert to CSV and store to file
+    dfr = pd.DataFrame(my_dict, index = range(9))
+    dfr.to_csv("probs.csv")
+    
         
     
 ratings = calculate_ratings("past_matches.csv")
 print(ratings)
-show_ratings(ratings)
+display_ratings(ratings)
+test_dict = {0: 0.8985, 1: 0.1437, 2: 0.2890, 3: 0.4515, 4: 0.6742, 5: 0.3096, 
+             6: 0.01234, 7: 0.5673, 8: 0.76892}
+display_probs(test_dict)
