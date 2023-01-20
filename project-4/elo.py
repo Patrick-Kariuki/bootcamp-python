@@ -117,6 +117,10 @@ def display_ratings(ratings_dict):
     plt.savefig('projections.pdf')
     # Display the plot
     plt.show()
+    
+
+def project_win_probs(ratings_dict):
+    pass
 
 
 def display_probs(probs_dict):
@@ -174,10 +178,12 @@ def display_probs(probs_dict):
     plt.savefig("projections_pie.pdf")
     plt.show()
 
-    
-ratings = calculate_ratings("past_matches.csv")
-print(ratings)
-display_ratings(ratings)
-test_dict = {0: 0.8985, 1: 0.1437, 2: 0.2890, 3: 0.4515, 4: 0.6742, 5: 0.3096, 
-             7: 0.5673, 6: 0.76892}
-display_probs(test_dict)
+
+if __name__ == "__main__":
+    # For testing
+    ratings = calculate_ratings("past_matches.csv")
+    print(ratings)
+    display_ratings(ratings)
+    test_dict = {0: 0.8985, 1: 0.1437, 2: 0.2890, 3: 0.4515, 4: 0.6742, 
+                 5: 0.3096, 7: 0.5673, 6: 0.76892}
+    display_probs(test_dict)
