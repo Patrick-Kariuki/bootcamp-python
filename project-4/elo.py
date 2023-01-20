@@ -15,8 +15,12 @@ Project 4
 import pandas as pd
 # Import matplotlib module
 import matplotlib.pyplot as plt
+# Import numpy
+import numpy as np
 # import math module
 import math
+# Import random module
+import random
 
 
 def calculate_ratings(past_matches):
@@ -57,7 +61,7 @@ def calculate_ratings(past_matches):
             prob_B_wins = 1 - prob_A_wins
             
             # Update player ratings if player_A wins the current game
-            if winner is player_A:
+            if winner == player_A:
                 player_ratings[player_A] += 5 * (1.0 - prob_A_wins)
                 player_ratings[player_B] += 5 * (0.0 - prob_B_wins)
             # Update player ratings if player_A loses the current game
@@ -120,7 +124,104 @@ def display_ratings(ratings_dict):
     
 
 def project_win_probs(ratings_dict):
-    pass
+    """
+    Function: project_win_probs: Repeatedly simulates a completed tournament
+        100 times and calculates the probability of each player winning
+        the tournament
+
+    Parameters
+    ----------
+    ratings_dict : Dictionary containing players and their ratings
+    Returns
+    -------
+    possibility_win : Dictionary containing players and their probability 
+        of winning the tournament
+    """
+    # Initialize an empty dictionary with each player's possibility of winning
+    possibility_win = {player: 0 for player in range(8)}
+    
+    # Simulate the game 100 times
+    for n in range(100):
+        # These players proceed to the next round
+        current_winners = []
+        # List of tuples simulating the initial game plays (Figure 1)
+        game_plays = [(0, 7), (1, 6), (2, 5), (3, 4)]
+        # Iterate through the initial game plays
+        for match in game_plays:
+            # Simulate a single match between 2 players and get the winners
+            winner = play_game(ratings_dict, match)
+            # Add winners to current winners list
+            current_winners.append(winner)
+        
+        # At this point, the game has 4 players who proceed to the next round
+        # Update game plays for next round
+        game_plays.clear()
+        game_plays.append(tuple(current_winners[0:2]))
+        game_plays.append(tuple(current_winners[2:4]))
+        # Clear the current_winners list for new round
+        current_winners.clear()
+        
+        # Iterate through the 2nd round game plays
+        for match in game_plays:
+            # Simulate a single match between 2 players and get the winners
+            winner = play_game(ratings_dict, match)
+            # Add winners to current winners list
+            current_winners.append(winner)
+        
+        # At this point, the game has 2 players who proceed to the next round
+        # Update game plays for next round
+        game_plays.clear()
+        game_plays.append(tuple(current_winners[0:2]))
+        # Clear the current_winners list for new round
+        current_winners.clear()
+    
+        # Get the final winner
+        for match in game_plays:
+            final_winner = play_game(ratings_dict, match)
+        
+        # Add a win to the final winner
+        possibility_win[final_winner] += 1
+    
+    # Calculate the probability of each player to win as percentage
+    for key, value in possibility_win.items():
+        possibility_win[key] = value / 100
+            
+    # Return the players and their probability of winning
+    return possibility_win
+
+
+def play_game(ratings_dict, players):
+    """
+    Function: play_game: Simulates a single match between 2 players
+
+    Parameters
+    ----------
+    ratings_dict : Dictionary containing players and their ratings
+    players : Tuple with players playing the current match
+
+    Returns
+    -------
+    The winner of the current match
+
+    """
+    # Get each player by name
+    player_A = players[0]
+    player_B = players[1]
+    
+    # Generate a random number between 0 and 1
+    rand_num = random.random()
+    
+    # Compute the expected win probability of player_A
+    delta_skills = (ratings_dict[player_A] - ratings_dict[player_B]) / 100
+    prob_A_wins = math.exp(delta_skills) / (1 + math.exp(delta_skills))
+    
+    # Get the winner in the match
+    # If rand_num is less than probability of player A winning, player A wins
+    if rand_num < prob_A_wins:
+        return player_A
+    # Otherwise player B wins
+    else:
+        return player_B
 
 
 def display_probs(probs_dict):
@@ -146,37 +247,27 @@ def display_probs(probs_dict):
     # Sort the values in dict and reverse them to get highest to lowest
     sorted_prob_values = sorted(probs_dict.values())
     sorted_prob_values.reverse()
-    # Initialize an empty list to hold sorted values of players
-    # from the one with highest prob value to one with lowest
-    sorted_prob_players = []
-    
-    # Iterate through probs_dict to get the players sorted in order
-    # of decreasing prob values
-    for prob_value in sorted_prob_values:
-        for key, value in probs_dict.items():
-            if prob_value == value:
-                sorted_prob_players.append(key)
+    # Sort the keys in dict and reverse them to get highest to lowest
+    sorted_prob_players = [player for player, prob in \
+                           sorted(probs_dict.items(), key=lambda x: x[1])]
+    sorted_prob_players.reverse()
     
     # Add sorted players and values to dictionary as series
     my_dict['Player'] = sorted_prob_players
     my_dict['Probability'] = sorted_prob_values
     
     # Convert to CSV and store to file
-    dfr = pd.DataFrame(my_dict, index = range(8))
+    dfr = pd.DataFrame(my_dict)
     dfr.to_csv("probs.csv")
-    
-    # Pie-chart operations
+
     # Labels for the pie-chart from the sorted prob list
-    labels = sorted_prob_players
-    # Pie-chart slice sizes from sorted values list
-    slice_sizes = sorted_prob_values
-    
-    # Output to console and save file
-    fig1, ax1 = plt.subplots()
-    ax1.pie(slice_sizes, labels=labels)
-    ax1.axis('equal')
-    plt.savefig("projections_pie.pdf")
+    labels = [i for i in probs_dict.keys()]
+    # Pie-chart slice sizes from probs_dict
+    drawing_values = np.array([i for i in probs_dict.values()])
+    # Pie-chart operations
+    plt.pie(drawing_values, labels = labels)
     plt.show()
+    plt.savefig("projections_pie.pdf")
 
 
 if __name__ == "__main__":
@@ -184,6 +275,6 @@ if __name__ == "__main__":
     ratings = calculate_ratings("past_matches.csv")
     print(ratings)
     display_ratings(ratings)
-    test_dict = {0: 0.8985, 1: 0.1437, 2: 0.2890, 3: 0.4515, 4: 0.6742, 
-                 5: 0.3096, 7: 0.5673, 6: 0.76892}
-    display_probs(test_dict)
+    probs = project_win_probs(ratings)
+    print(probs)
+    display_probs(probs)
