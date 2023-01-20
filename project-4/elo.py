@@ -13,6 +13,9 @@ Project 4
 """
 # Import pandas module
 import pandas as pd
+# Import matplotlib module
+import matplotlib.pyplot as plt
+# import math module
 import math
 
 def calculate_ratings(past_matches):
@@ -67,6 +70,41 @@ def calculate_ratings(past_matches):
     # Output message if an error occurs in reading the input file
     except FileNotFoundError:
         print("File", past_matches, "cannot be found")
+
+
+def show_ratings(ratings_dict):
+    # Set fonts on graph
+    plt.rc('font', family='serif')
+    
+    # Create an empty plot of size 8 inches by 8 inches
+    fig = plt.figure(figsize=(8, 8))
+    # Initialize a list of players from keys in ratings_dict
+    players = [player for player in ratings_dict.keys()]
+    # Initialize a list of player ratings from values in ratings_dict
+    ratings = [rating for rating in ratings_dict.values()]
+    
+    # Edit range of y-axis and label displayed
+    plt.ylabel('Rating', fontsize=24)
+    plt.ylim(0, 1600)
+    
+    # Edit label ox x-axis
+    plt.xlabel('Player', fontsize=24)
+    
+    # Adjust the tick sizes and the corresponding labels in the plot
+    plt.xticks(fontsize=24)
+    plt.yticks([i * 200 for i in range(8)], fontsize=24)
+    
+    # Draws a bar graph in the empty plot
+    plt.bar(players, ratings)
+    
+    # Adjust axes locations and labels within the plot area
+    plt.tight_layout()
+    # Save the visualization
+    plt.savefig('projections.pdf')
+    # Display the plot
+    plt.show()
         
     
-print(calculate_ratings("past_matches.csv"))
+ratings = calculate_ratings("past_matches.csv")
+print(ratings)
+show_ratings(ratings)
