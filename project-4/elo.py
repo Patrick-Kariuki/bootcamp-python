@@ -73,6 +73,19 @@ def calculate_ratings(past_matches):
 
 
 def show_ratings(ratings_dict):
+    """
+    Function: show_ratings: Generates to the console and saves to a file 
+        named projections.pdf a bar graph displaying each player's ratings
+
+    Parameters
+    ----------
+    ratings_dict : Dictionary containing players and their ratings
+
+    Returns
+    -------
+    None.
+
+    """
     # Set fonts on graph
     plt.rc('font', family='serif')
     
@@ -92,7 +105,7 @@ def show_ratings(ratings_dict):
     
     # Adjust the tick sizes and the corresponding labels in the plot
     plt.xticks(fontsize=24)
-    plt.yticks([i * 200 for i in range(8)], fontsize=24)
+    plt.yticks([i * 100 for i in range(16)], fontsize=24)
     
     # Draws a bar graph in the empty plot
     plt.bar(players, ratings)
