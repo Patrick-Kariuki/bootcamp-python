@@ -145,10 +145,10 @@ def encrypt_decrypt(input_string, key = "CAT"):
                 retriever = "01"
                 # Get the corresponding value and add to new encrypted
                 new_encrypted += dna_encoding[retriever]
-            # The rest match the scheme
+            # The rest match the scheme, so we add them
             else:
                 new_encrypted += dna_encoding[retriever]
-        # The encryped message is passed for the next iteration
+        # The encrypted message is passed for the next iteration
         encrypted = new_encrypted
         
     # Return the encrypted message
@@ -157,7 +157,7 @@ def encrypt_decrypt(input_string, key = "CAT"):
 
 def synthesizer(dna_sequence):
     """
-    Function: synthesizer: simulates DAN manufacturing process by a robot
+    Function: synthesizer: Simulates DNA manufacturing process by a robot
 
     Parameters
     ----------
@@ -221,7 +221,7 @@ def synthesizer(dna_sequence):
 
 def error_count(input_string1, input_string2):
     """
-    Function: error_count: counts the number of mismatches in 2 strings
+    Function: error_count: Counts the number of mismatches in 2 strings
 
     Parameters: 
     ----------
@@ -287,6 +287,7 @@ def redundancy(n, input_string):
         most_frequent = max(base_counts, key=base_counts.get)
         error_corrected += most_frequent
     
+    # Return error corrected string
     return error_corrected
 
 
@@ -308,11 +309,11 @@ if __name__ == "__main__":
     # the file could not open. I decided to use a txt file and convert
     # to pdf using Microsoft Word.
     with open("error_count.txt", "w", encoding="utf-8-sig") as file:
-        file.writelines(["Name: Patrick Kariuki \n", "JHED: pkariuk1 \n"])
+        file.writelines("Name: Patrick Kariuki \nJHED: pkariuk1 \n")
 
     # Test the redundancy scheme for different values of n
     for n in [1, 2, 5, 10, 20, 50, 75, 80, 90, 100]:
         corrected_string = redundancy(n, sample_string)
         errors = error_count(sample_string, corrected_string)
-        with open("error_count.txt", "a") as file:
+        with open("error_count.txt", "a", encoding="utf-8-sig") as file:
             file.write("n = {}, errors = {} \n".format(n, errors))
