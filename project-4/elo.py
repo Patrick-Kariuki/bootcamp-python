@@ -120,6 +120,22 @@ def display_ratings(ratings_dict):
 
 
 def display_probs(probs_dict):
+    """
+    Fuction: display_probs: Generates to the console and saves to a file 
+        named projections_pie.pdf a pie-chart displaying each player's 
+        probability of winning a match, saves to a file named probs.csv each 
+        player and their probability of winning a match
+
+    Parameters
+    ----------
+    probs_dict : Dictionary containing players and their probablity of
+        winning a match
+
+    Returns
+    -------
+    None.
+
+    """
     # Initialize empty dictionary to be turned to CSV
     my_dict = {}
     
@@ -142,14 +158,26 @@ def display_probs(probs_dict):
     my_dict['Probability'] = sorted_prob_values
     
     # Convert to CSV and store to file
-    dfr = pd.DataFrame(my_dict, index = range(9))
+    dfr = pd.DataFrame(my_dict, index = range(8))
     dfr.to_csv("probs.csv")
     
-        
+    # Pie-chart operations
+    # Labels for the pie-chart from the sorted prob list
+    labels = sorted_prob_players
+    # Pie-chart slice sizes from sorted values list
+    slice_sizes = sorted_prob_values
+    
+    # Output to console and save file
+    fig1, ax1 = plt.subplots()
+    ax1.pie(slice_sizes, labels=labels)
+    ax1.axis('equal')
+    plt.savefig("projections_pie.pdf")
+    plt.show()
+
     
 ratings = calculate_ratings("past_matches.csv")
 print(ratings)
 display_ratings(ratings)
 test_dict = {0: 0.8985, 1: 0.1437, 2: 0.2890, 3: 0.4515, 4: 0.6742, 5: 0.3096, 
-             6: 0.01234, 7: 0.5673, 8: 0.76892}
+             7: 0.5673, 6: 0.76892}
 display_probs(test_dict)
