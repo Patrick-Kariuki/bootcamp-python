@@ -125,6 +125,7 @@ def display_probs(probs_dict):
     
     # Sort the values in dict and reverse them to get highest to lowest
     sorted_prob_values = sorted(probs_dict.values())
+    sorted_prob_values.reverse()
     # Initialize an empty list to hold sorted values of players
     # from the one with highest prob value to one with lowest
     sorted_prob_players = []
