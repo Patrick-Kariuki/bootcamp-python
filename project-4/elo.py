@@ -57,7 +57,7 @@ def calculate_ratings(past_matches):
                             player_ratings[player_B]) / 100
             
             # Calculate the probablity of both players winning the game
-            prob_A_wins = math.exp(delta_skills) / 1 + math.exp(delta_skills)
+            prob_A_wins = math.exp(delta_skills) / (1 + math.exp(delta_skills))
             prob_B_wins = 1 - prob_A_wins
             
             # Update player ratings if player_A wins the current game
