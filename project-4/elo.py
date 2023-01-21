@@ -103,14 +103,14 @@ def display_ratings(ratings_dict):
     
     # Edit range of y-axis and label displayed
     plt.ylabel('Rating', fontsize=24)
-    plt.ylim(0, 1600)
+    plt.ylim(0, 1800)
     
     # Edit label ox x-axis
     plt.xlabel('Player', fontsize=24)
     
     # Adjust the tick sizes and the corresponding labels in the plot
     plt.xticks(fontsize=24)
-    plt.yticks([i * 100 for i in range(16)], fontsize=24)
+    plt.yticks([i * 100 for i in range(18)], fontsize=24)
     
     # Draws a bar graph in the empty plot
     plt.bar(players, ratings)
