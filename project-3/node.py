@@ -15,7 +15,27 @@ Project 3
 class Node:
     
     """ Node class corresponding to each of the buildings in mall """
+    
     def __init__(self, ID, connected_nodes, minimum_price, fractional_price):
+        """
+        
+
+        Parameters
+        ----------
+        ID : TYPE
+            DESCRIPTION.
+        connected_nodes : TYPE
+            DESCRIPTION.
+        minimum_price : TYPE
+            DESCRIPTION.
+        fractional_price : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        None.
+
+        """
         self.id = ID
         self.connected_nodes = connected_nodes
         self.minimum_price = minimum_price
