@@ -266,8 +266,8 @@ def display_probs(probs_dict):
     drawing_values = np.array([i for i in probs_dict.values()])
     # Pie-chart operations
     plt.pie(drawing_values, labels = labels)
-    plt.show()
     plt.savefig("projections_pie.pdf")
+    plt.show()
 
 
 if __name__ == "__main__":
