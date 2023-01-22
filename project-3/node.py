@@ -18,18 +18,17 @@ class Node:
     
     def __init__(self, ID, connected_nodes, minimum_price, fractional_price):
         """
-        
+        Function: __init__: Initialize an instace of Node class
 
         Parameters
         ----------
-        ID : TYPE
-            DESCRIPTION.
-        connected_nodes : TYPE
-            DESCRIPTION.
-        minimum_price : TYPE
-            DESCRIPTION.
-        fractional_price : TYPE
-            DESCRIPTION.
+        ID : String to uniquely identify each building
+        connected_nodes : List of Node IDs to which this Node has outgoing 
+            edges
+        minimum_price : Fraction representing the minimum accepted price 
+            to make a purchase
+        fractional_price : Fraction representing the fraction of buyer's 
+            budget to use to buy if they can make the purchase
 
         Returns
         -------
@@ -40,4 +39,5 @@ class Node:
         self.connected_nodes = connected_nodes
         self.minimum_price = minimum_price
         self.fractional_price = fractional_price
+        # The amount collected in each building after a purchase
         self.revenue = 0
