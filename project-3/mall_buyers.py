@@ -11,8 +11,8 @@ Intersession 2023
 
 Project 3
 """
+# Import the frac class
 import frac
-import node
 
 class Buyer:
     
@@ -20,20 +20,20 @@ class Buyer:
     
     def __init__(self, current_node_id, remaining_budget):
         """
-        
+        Function: __init__: Initialize Buyer instance
 
         Parameters
         ----------
-        current_node_id : TYPE
-            DESCRIPTION.
-        remaining_budget : TYPE
-            DESCRIPTION.
+        current_node_id : String representing the ID of the current Node
+            the buyer is located
+        remaining_budget : Frac object representing the buyer's remaining
+            budget
 
         Returns
         -------
         None.
 
         """
-        self.ID = str(current_node_id)
-        self.remaining_budget = frac(remaining_budget)
+        self.ID = current_node_id
+        self.remaining_budget = remaining_budget
         

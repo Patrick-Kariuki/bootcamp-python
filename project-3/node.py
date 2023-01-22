@@ -18,7 +18,7 @@ class Node:
     
     def __init__(self, ID, connected_nodes, minimum_price, fractional_price):
         """
-        Function: __init__: Initialize an instace of Node class
+        Function: __init__: Initialize an instance of Node class
 
         Parameters
         ----------
