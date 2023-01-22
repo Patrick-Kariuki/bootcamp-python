@@ -12,6 +12,7 @@ Intersession 2023
 Project 3
 """
 import frac
+import node
 
 class Buyer:
     

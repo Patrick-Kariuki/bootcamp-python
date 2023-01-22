@@ -15,13 +15,9 @@ import frac
 
 x = frac.Frac(1,2)
 y = frac.Frac(1,3)
-a = frac.Frac(3, 12)
-b = frac.Frac(6, 8)
-sum_fracs = a + b
 
 print(x+y)
 print(x*y)
 print(x/y)
 print(x-y)
-print(sum_fracs.simplify())
 
