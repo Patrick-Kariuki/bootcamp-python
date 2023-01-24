@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 @author: Patrick Kariuki
-@JHED: pkariuk1
 Date: 01/09/2023
 
 Bootcamp Python
@@ -304,12 +303,9 @@ if __name__ == "__main__":
     #Sample input string of length 50
     sample_string = "TAATCGGATCAGTACGGATCAGTACGGATCAGTACGGATCAGTACGGATCAG"
 
-    # Write name and jhed to file
-    # I tried creating a pdf file using the file.write() method but
-    # the file could not open. I decided to use a txt file and convert
-    # to pdf using Microsoft Word.
+    # Write name file
     with open("error_count.txt", "w", encoding="utf-8-sig") as file:
-        file.writelines("Name: Patrick Kariuki \nJHED: pkariuk1 \n")
+        file.write("Name: Patrick Kariuki\n")
 
     # Test the redundancy scheme for different values of n
     for n in [1, 2, 5, 10, 20, 50, 75, 80, 90, 100]:

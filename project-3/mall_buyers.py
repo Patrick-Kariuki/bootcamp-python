@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 @author: Patrick Kariuki
-@JHED: pkariuk1
 Date: 01/11/2023
 
 Bootcamp Python
