@@ -9,6 +9,7 @@ demonstrate proficiency in the new language.
 
 ## Projects:
 The project descriptions are in their respective folders in pdf format.
-> - Project 1: Decrypting encrypted message
-> - Project 2:
-> - Project 3:
+> - Project 1: Decrypting encrypted messages using shifted alphabet
+> - Project 2: Encrypting and decrypting messages in DNA format
+> - Project 3: OOP using a modified version of Google's Pagerank Algorithm
+> - Project 4: Sports analysis using Arpad Elo's rating scheme
