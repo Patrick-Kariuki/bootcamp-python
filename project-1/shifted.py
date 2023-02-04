@@ -34,7 +34,7 @@ for shifted_by in range(1, 26):
             new_index = alphabet.index(letter) + shifted_by
             # If index value is greater than the length of alphabet
             if new_index >= len(alphabet):
-                new_index -= 26
+                new_index %= 26
                 # Get the corresponding letter and add to decrypted
                 decrypted += alphabet[new_index]
             else:
@@ -47,16 +47,14 @@ for shifted_by in range(1, 26):
 
 
 # Read the frequencies of the letters in sample, and store them in dictionary
-letter_count = {}
+letter_count = {letter: 0 for letter in alphabet}
 with open("pride_prejudice.txt", "r") as file:
     contents = file.read()
     # Count the number of occurrences of every letter in the alphabet
     for letter in contents.lower():
         if letter.isalpha(): 
-            if letter in letter_count:
                 letter_count[letter] += 1
-            else:
-                letter_count[letter] = 1
+            
 
 # Total number of characters in sample
 total_chars = sum(letter_count.values())
